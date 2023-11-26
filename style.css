@@ -8,7 +8,7 @@ header {
     background: rgb(54, 60, 181);
     text-align: center;
     color: white;
-    padding: 50px 0;
+    padding: 10px 0;
 }
 
 .container {
@@ -16,7 +16,7 @@ header {
 }
 
 .panel {
-    background: rgb(13, 59, 90, 0.95);
+    background: rgb(13, 59, 90, 0.55);
     border-radius: 15px;
     padding: 20px;
     margin: 20px;
@@ -24,7 +24,7 @@ header {
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 24px;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
@@ -36,11 +36,11 @@ p {
 .button {
     background-color: #333;
     color: white;
-    padding: 15px;
+    padding: 10px;
     width: 250px;
     border-radius: 10px;
     display: inline-block;
-    margin: 20px;
+    margin: 10px;
     text-align: center;
     text-transform: uppercase;
     border: none;
