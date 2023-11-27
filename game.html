@@ -97,9 +97,22 @@
                     };
 
                 };
+
+                function enterDroppable(elem) {
+                    elem.style.background = 'pink';
+                }
+
+                function leaveDroppable(elem) {
+                    elem.style.background = '';
+                }
+
+                object.ondragstart = function () {
+                    return false;
+                };
             }
             else {
-                object.touchstart = function (event) {
+
+                object.ontouchstart = function (event) {
 
                     let shiftX = event.clientX - object.getBoundingClientRect().left;
                     let shiftY = event.clientY - object.getBoundingClientRect().top;
@@ -115,7 +128,7 @@
                         object.style.top = pageY - shiftY + 'px';
                     }
 
-                    function touchmove(event) {
+                    function onTouchMove(event) {
                         moveAt(event.pageX, event.pageY);
 
                         object.hidden = true;
@@ -138,11 +151,11 @@
                         }
                     }
 
-                    document.addEventListener('touchmove', touchmove);
+                    document.addEventListener('mousemove', onTouchMove);
 
-                    object.touchend = function () {
-                        document.removeEventListener('touchmove', touchmove);
-                        object.touchend = null;
+                    object.onTouchEnd = function () {
+                        document.removeEventListener('mousemove', onTouchMove);
+                        object.onTouchEnd = null;
 
                         if (currentDroppable) {
                             showPopupPanel();
@@ -150,19 +163,21 @@
                     };
 
                 };
+
+                function enterDroppable(elem) {
+                    elem.style.background = 'pink';
+                }
+
+                function leaveDroppable(elem) {
+                    elem.style.background = '';
+                }
+
+                object.ontouchend = function () {
+                    return false;
+                };
             }
 
-            function enterDroppable(elem) {
-                elem.style.background = 'pink';
-            }
-
-            function leaveDroppable(elem) {
-                elem.style.background = '';
-            }
-
-            object.ondragstart = function () {
-                return false;
-            };
+            
 
             function showPopupPanel() {
                 // Отображаем панель с текстом
