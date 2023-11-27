@@ -5,18 +5,95 @@ body {
 }
 
 header {
-    background: rgb(54, 60, 181);
+    background: rgb(59, 63, 147);
     text-align: center;
     color: white;
     padding: 10px 0;
+    height: 500px;
+}
+
+.header-text {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .container {
     max-width: 390px;
 }
 
+.draggable {
+    position: absolute;
+    left: 170px;
+}
+
+.columns {
+    display: flex;
+    padding: 15px;
+    column-gap: 25px;
+    column-count: 3;
+}
+
+.target {
+    position: relative;
+    text-align: center;
+}
+
+.target-text {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.target3-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.game-panel {
+    background: rgb(59, 63, 147);
+    border-radius: 15px;
+    height: 75px;
+}
+
+.win-popup-panel {
+    position: fixed;
+    bottom: -40vh;
+    width: 100%;
+    height: 40vh; /* Выберите желаемую высоту панели */
+    background: rgb(98, 102, 169); /* Прозрачный фон */
+    z-index: 2000;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    transition: bottom 0.5s ease;
+}
+
+.lose-popup-panel {
+    position: fixed;
+    bottom: -40vh;
+    width: 100%;
+    height: 40vh; /* Выберите желаемую высоту панели */
+    background: rgb(98, 102, 169); /* Прозрачный фон */
+    z-index: 2000;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    transition: bottom 0.5s ease;
+}
+
 .panel {
-    background: rgb(13, 59, 90, 0.55);
+    background: rgb(54, 60, 181);
     border-radius: 15px;
     padding: 20px;
     margin: 20px;
@@ -34,6 +111,7 @@ p {
 }
 
 .button {
+    cursor: pointer;
     background-color: #333;
     color: white;
     padding: 10px;
@@ -74,6 +152,38 @@ footer {
     float: right;
     width: 25px;
     height: auto;
+}
+
+.game-panel {
+    border-radius: 15px;
+    padding: 100px;
+    margin: 20px;
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.draggable {
+    position: absolute;
+    cursor: grab;
+}
+
+.result-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: none;
 }
 
 /*
