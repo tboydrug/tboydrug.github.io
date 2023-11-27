@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="windows-1251">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Game</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-text">
+                <p>Какой формат у новых сигарет Parliament Reserve?</p>
+
+
+            </div>
+            <div class="draggable">
+                <img src="object.jpg" style="cursor:pointer" width="70" height="100" id="object">
+            </div>
+            <div class="game-panel">
+
+            </div>
+            <div class="columns">
+                <div class="target">
+                    <img src="target.png" width="100" height="100" id="1" class="droppable">
+                    <div class="target-text">Стандартный</div>
+                </div>
+                <div class="target">
+                    <img src="target.png" width="100" height="100" id="2" class="droppable">
+                    <div class="target-text">Толстый</div>
+                </div>
+                <div class="target">
+                    <img src="target.png" width="100" height="100" id="3" class="droppable">
+                    <div class="target-text">Супертонкий</div>
+                </div>
+            </div>
+        </header>
+
+
+
+
+        <script>
+            let currentDroppable = null;
+            let hp = 2;
+
+            object.onmousedown = function (event) {
+
+                let shiftX = event.clientX - object.getBoundingClientRect().left;
+                let shiftY = event.clientY - object.getBoundingClientRect().top;
+
+                object.style.position = 'absolute';
+                object.style.zIndex = 1000;
+                document.body.append(object);
+
+                moveAt(event.pageX, event.pageY);
+
+                function moveAt(pageX, pageY) {
+                    object.style.left = pageX - shiftX + 'px';
+                    object.style.top = pageY - shiftY + 'px';
+                }
+
+                function onMouseMove(event) {
+                    moveAt(event.pageX, event.pageY);
+
+                    object.hidden = true;
+                    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+                    object.hidden = false;
+
+                    if (!elemBelow) return;
+
+                    let droppableBelow = elemBelow.closest('.droppable');
+                    if (currentDroppable != droppableBelow) {
+                        if (currentDroppable) { // null если мы были не над droppable до этого события
+                            // (например, над пустым пространством)
+                            leaveDroppable(currentDroppable);
+                        }
+                        currentDroppable = droppableBelow;
+                        if (currentDroppable) { // null если мы не над droppable сейчас, во время этого события
+                            // (например, только что покинули droppable)
+                            enterDroppable(currentDroppable);
+                        }
+                    }
+                }
+
+                document.addEventListener('mousemove', onMouseMove);
+
+                object.onmouseup = function () {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    object.onmouseup = null;
+
+                    if (currentDroppable) {
+                        showPopupPanel();
+                    }
+                };
+
+            };
+
+
+            function enterDroppable(elem) {
+                elem.style.background = 'pink';
+            }
+
+            function leaveDroppable(elem) {
+                elem.style.background = '';
+            }
+
+            object.ondragstart = function () {
+                return false;
+            };
+
+            function showPopupPanel() {
+                // Отображаем панель с текстом
+                if (currentDroppable.id == 3) {
+                    let winPopupPanel = document.querySelector('.win-popup-panel');
+                    // Блокируем взаимодействие с объектом
+                    object.style.pointerEvents = 'none';
+                    setTimeout(() => {
+                        // Задаем конечное состояние для анимации
+                        winPopupPanel.style.bottom = '0';
+                    }, 0);
+                }
+                else {
+                    let losePopupPanel = document.querySelector('.lose-popup-panel');
+                    hp - 1;
+                    document.getElementById("count").innerText = hp;
+                    // Блокируем взаимодействие с объектом
+                    object.style.pointerEvents = 'none';
+                    setTimeout(() => {
+                        // Задаем конечное состояние для анимации
+                        losePopupPanel.style.bottom = '0';
+                    }, 0);
+                }
+
+                
+            }
+        </script>
+
+        <footer>
+            <div class="footer-text">
+                <p>Предназначено только для владельцев и продавцов торговых объектов, торгующих табачными изделиями. Не подлежит распространению или передаче третьим лицам.</p>
+                <p>Предупреждение о вреде для здоровья:</p>
+            </div>
+            <div class="footer-disclaimer">
+                <p>
+                    <img src="21.jpg" alt="Footer Image" class="footer-image" align="right" vspace="5" hspace="5">употребление табака вредит вашему здоровью и здоровью других людей
+                </p>
+            </div>
+            <div class="win-popup-panel">
+                <p>Вы ответили верно!</p>
+                <p>На ваш аккаунт зачислено 5000 суи и 50 баллов!</p>
+                <button class="button" id="backBtn">вернуться в telegram</button>
+            </div>
+            <div class="lose-popup-panel">
+                <p>Вы ответили неверно!</p>
+                <p>Попыток осталось: <span id="count">hp</span></p>
+                <button class="button" id="backBtn">вернуться в telegram</button>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
