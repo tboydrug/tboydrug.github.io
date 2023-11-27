@@ -42,59 +42,115 @@
         <script>
             let currentDroppable = null;
             let hp = 2;
+            var userAgent = navigator.userAgent;
 
-            object.onmousedown = function (event) {
+            if (userAgent.match(/Windows/i)) {
 
-                let shiftX = event.clientX - object.getBoundingClientRect().left;
-                let shiftY = event.clientY - object.getBoundingClientRect().top;
+                object.onmousedown = function (event) {
 
-                object.style.position = 'absolute';
-                object.style.zIndex = 1000;
-                document.body.append(object);
+                    let shiftX = event.clientX - object.getBoundingClientRect().left;
+                    let shiftY = event.clientY - object.getBoundingClientRect().top;
 
-                moveAt(event.pageX, event.pageY);
+                    object.style.position = 'absolute';
+                    object.style.zIndex = 1000;
+                    document.body.append(object);
 
-                function moveAt(pageX, pageY) {
-                    object.style.left = pageX - shiftX + 'px';
-                    object.style.top = pageY - shiftY + 'px';
-                }
-
-                function onMouseMove(event) {
                     moveAt(event.pageX, event.pageY);
 
-                    object.hidden = true;
-                    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-                    object.hidden = false;
+                    function moveAt(pageX, pageY) {
+                        object.style.left = pageX - shiftX + 'px';
+                        object.style.top = pageY - shiftY + 'px';
+                    }
 
-                    if (!elemBelow) return;
+                    function onMouseMove(event) {
+                        moveAt(event.pageX, event.pageY);
 
-                    let droppableBelow = elemBelow.closest('.droppable');
-                    if (currentDroppable != droppableBelow) {
-                        if (currentDroppable) { // null если мы были не над droppable до этого события
-                            // (например, над пустым пространством)
-                            leaveDroppable(currentDroppable);
-                        }
-                        currentDroppable = droppableBelow;
-                        if (currentDroppable) { // null если мы не над droppable сейчас, во время этого события
-                            // (например, только что покинули droppable)
-                            enterDroppable(currentDroppable);
+                        object.hidden = true;
+                        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+                        object.hidden = false;
+
+                        if (!elemBelow) return;
+
+                        let droppableBelow = elemBelow.closest('.droppable');
+                        if (currentDroppable != droppableBelow) {
+                            if (currentDroppable) { // null если мы были не над droppable до этого события
+                                // (например, над пустым пространством)
+                                leaveDroppable(currentDroppable);
+                            }
+                            currentDroppable = droppableBelow;
+                            if (currentDroppable) { // null если мы не над droppable сейчас, во время этого события
+                                // (например, только что покинули droppable)
+                                enterDroppable(currentDroppable);
+                            }
                         }
                     }
-                }
 
-                document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mousemove', onMouseMove);
 
-                object.onmouseup = function () {
-                    document.removeEventListener('mousemove', onMouseMove);
-                    object.onmouseup = null;
+                    object.onmouseup = function () {
+                        document.removeEventListener('mousemove', onMouseMove);
+                        object.onmouseup = null;
 
-                    if (currentDroppable) {
-                        showPopupPanel();
-                    }
+                        if (currentDroppable) {
+                            showPopupPanel();
+                        }
+                    };
+
                 };
+            }
+            else {
+                object.touchstart = function (event) {
 
-            };
+                    let shiftX = event.clientX - object.getBoundingClientRect().left;
+                    let shiftY = event.clientY - object.getBoundingClientRect().top;
 
+                    object.style.position = 'absolute';
+                    object.style.zIndex = 1000;
+                    document.body.append(object);
+
+                    moveAt(event.pageX, event.pageY);
+
+                    function moveAt(pageX, pageY) {
+                        object.style.left = pageX - shiftX + 'px';
+                        object.style.top = pageY - shiftY + 'px';
+                    }
+
+                    function touchmove(event) {
+                        moveAt(event.pageX, event.pageY);
+
+                        object.hidden = true;
+                        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+                        object.hidden = false;
+
+                        if (!elemBelow) return;
+
+                        let droppableBelow = elemBelow.closest('.droppable');
+                        if (currentDroppable != droppableBelow) {
+                            if (currentDroppable) { // null если мы были не над droppable до этого события
+                                // (например, над пустым пространством)
+                                leaveDroppable(currentDroppable);
+                            }
+                            currentDroppable = droppableBelow;
+                            if (currentDroppable) { // null если мы не над droppable сейчас, во время этого события
+                                // (например, только что покинули droppable)
+                                enterDroppable(currentDroppable);
+                            }
+                        }
+                    }
+
+                    document.addEventListener('touchmove', touchmove);
+
+                    object.touchend = function () {
+                        document.removeEventListener('touchmove', touchmove);
+                        object.onmouseup = null;
+
+                        if (currentDroppable) {
+                            showPopupPanel();
+                        }
+                    };
+
+                };
+            }
 
             function enterDroppable(elem) {
                 elem.style.background = 'pink';
