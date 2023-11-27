@@ -142,7 +142,7 @@
 
                     object.touchend = function () {
                         document.removeEventListener('touchmove', touchmove);
-                        object.onmouseup = null;
+                        object.touchend = null;
 
                         if (currentDroppable) {
                             showPopupPanel();
