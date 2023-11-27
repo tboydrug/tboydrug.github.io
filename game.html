@@ -112,15 +112,16 @@
             }
             else {
 
-                object.addEventListener('touchstart', function (event) {
-                    let shiftX = event.touches[0].pageX - object.getBoundingClientRect().left;
-                    let shiftY = event.touches[0].pageY - object.getBoundingClientRect().top;
+                object.ontouchstart = function (event) {
+
+                    let shiftX = event.clientX - object.getBoundingClientRect().left;
+                    let shiftY = event.clientY - object.getBoundingClientRect().top;
 
                     object.style.position = 'absolute';
                     object.style.zIndex = 1000;
                     document.body.append(object);
 
-                    moveAt(event.touches[0].pageX, event.touches[0].pageY);
+                    moveAt(event.pageX, event.pageY);
 
                     function moveAt(pageX, pageY) {
                         object.style.left = pageX - shiftX + 'px';
@@ -128,35 +129,40 @@
                     }
 
                     function onTouchMove(event) {
-                        moveAt(event.touches[0].pageX, event.touches[0].pageY);
+                        moveAt(event.pageX, event.pageY);
 
                         object.hidden = true;
-                        let elemBelow = document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
+                        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
                         object.hidden = false;
 
                         if (!elemBelow) return;
 
-                            let droppableBelow = elemBelow.closest('.droppable');
-                            if (currentDroppable != droppableBelow) {
-                                if (currentDroppable) {
-                                    leaveDroppable(currentDroppable);
-                                }
+                        let droppableBelow = elemBelow.closest('.droppable');
+                        if (currentDroppable != droppableBelow) {
+                            if (currentDroppable) { // null если мы были не над droppable до этого события
+                                // (например, над пустым пространством)
+                                leaveDroppable(currentDroppable);
+                            }
                             currentDroppable = droppableBelow;
-                                if (currentDroppable) {
-                                    enterDroppable(currentDroppable);
-                                }
+                            if (currentDroppable) { // null если мы не над droppable сейчас, во время этого события
+                                // (например, только что покинули droppable)
+                                enterDroppable(currentDroppable);
                             }
                         }
-
-                    object.addEventListener('touchend', function () {
-                    document.removeEventListener('touchmove', onTouchMove);
-                    object.removeEventListener('touchend', arguments.callee);
-
-                    if (currentDroppable) {
-                        showPopupPanel();
                     }
-                });
-            });
+
+                    document.addEventListener('mousemove', onTouchMove);
+
+                    object.onTouchEnd = function () {
+                        document.removeEventListener('mousemove', onTouchMove);
+                        object.onTouchEnd = null;
+
+                        if (currentDroppable) {
+                            showPopupPanel();
+                        }
+                    };
+
+                };
 
                 function enterDroppable(elem) {
                     elem.style.background = 'pink';
@@ -165,6 +171,12 @@
                 function leaveDroppable(elem) {
                     elem.style.background = '';
                 }
+
+                object.ontouchend = function () {
+                    return false;
+                };
+            }
+
             
 
             function showPopupPanel() {
