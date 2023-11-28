@@ -41,6 +41,7 @@
 
         <script>
             let currentDroppable = null;
+            let hp = 2;
             var userAgent = navigator.userAgent;
 
             if (userAgent.match(/Windows/i)) {
@@ -98,7 +99,7 @@
                 };
 
                 function enterDroppable(elem) {
-                    elem.style.background = 'gray';
+                    elem.style.background = 'pink';
                 }
 
                 function leaveDroppable(elem) {
@@ -178,7 +179,8 @@
                 }
                 else {
                     let losePopupPanel = document.querySelector('.lose-popup-panel');
-                    document.getElementById("count").innerText = remainingAttempts;
+                    hp - 1;
+                    document.getElementById("count").innerText = hp;
                     // Блокируем взаимодействие с объектом
                     object.style.pointerEvents = 'none';
                     setTimeout(() => {
@@ -186,8 +188,6 @@
                         losePopupPanel.style.bottom = '0';
                     }, 0);
                 }
-
-                
             }
 
         </script>
@@ -205,12 +205,12 @@
             <div class="win-popup-panel">
                 <p>Вы ответили верно!</p>
                 <p>На ваш аккаунт зачислено 5000 суи и 50 баллов!</p>
-                <button class="button" id="backBtn1">вернуться на главную</button>
+                <button class="button" id="backBtn">вернуться в telegram</button>
             </div>
             <div class="lose-popup-panel">
                 <p>Вы ответили неверно!</p>
                 <p>Попыток осталось: <span id="count">hp</span></p>
-                <button class="button" id="backBtn2">попробовать еще раз</button>
+                <button class="button" id="backBtn">вернуться в telegram</button>
             </div>
         </footer>
     </div>
