@@ -2,17 +2,31 @@ let tg = window.Telegram.WebApp;
 
 tg.expand();
 
-let btn = document.getElementById("playBtn");
-btn.addEventListener("click", function ()
+let playButton = document.getElementById("playBtn");
+let backButton = document.getElementById("backBtn");
+
+playButton.addEventListener("click", function ()
 {
-    window.location.href = "https://tboydrug.github.io/game";
+    window.location.href = "file:///C:/Users/malum/Desktop/webapp/game.html";
 });
 
-Telegram.WebApp.onEvent("playClick", function () {
+backButton.addEventListener("click", function () {
+    window.close();
+})
+
+Telegram.WebApp.onEvent("backClickBtn", function () {
+    let clickEvent = new Event("click");
+
+    backButton.dispatchEvent(clickEvent);
+
+    tg.sendData({ buttonClicked: "backBtn" });
+})
+
+Telegram.WebApp.onEvent("playClickBtn", function () {
 
     let clickEvent = new Event("click");
 
-    btn.dispatchEvent(clickEvent);
+    playButton.dispatchEvent(clickEvent);
 
     tg.sendData({ buttonClicked: "playBtn" });
 });
