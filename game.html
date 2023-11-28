@@ -150,23 +150,22 @@
 
                     document.addEventListener('touchmove', onTouchMove);
 
+                    let releasedOverDroppable = false;
+
                     object.ontouchend = function () {
                         document.removeEventListener('touchmove', onTouchMove);
                         object.ontouchend = null;
 
-                        let elemBelow = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
-                        let droppableBelow = elemBelow.closest('.droppable');
-
-                        if (droppableBelow === currentDroppable) {
+                        if (releasedOverDroppable && currentDroppable) {
                             showPopupPanel();
                         }
-
-                        currentDroppable = null;
-
-                        if (currentDroppable) {
-                            showPopupPanel();
-                        }
+                            currentDroppable = null;
+                            releasedOverDroppable = false;
                     };
+
+                    document.addEventListener('touchend', function () {
+                    releasedOverDroppable = true;
+                    });
 
                     event.preventDefault(); // Prevent default touch behavior
                 };
