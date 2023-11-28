@@ -154,12 +154,24 @@
                         document.removeEventListener('touchmove', onTouchMove);
                         object.ontouchend = null;
 
-                        if (currentDroppable) {
+                        if (currentDroppable && isElementOverDroppable(object, currentDroppable)) {
                             showPopupPanel();
                         }
                     };
 
-                    //event.preventDefault(); // Prevent default touch behavior
+                    function isElementOverDroppable(element, droppable) {
+                        const elementRect = element.getBoundingClientRect();
+                        const droppableRect = droppable.getBoundingClientRect();
+                    
+                        return (
+                            elementRect.left < droppableRect.right &&
+                            elementRect.right > droppableRect.left &&
+                            elementRect.top < droppableRect.bottom &&
+                            elementRect.bottom > droppableRect.top
+                        );
+                    }
+
+                    event.preventDefault(); // Prevent default touch behavior
                 };
 
             }
