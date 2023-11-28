@@ -154,6 +154,15 @@
                         document.removeEventListener('touchmove', onTouchMove);
                         object.ontouchend = null;
 
+                        let elemBelow = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+                        let droppableBelow = elemBelow.closest('.droppable');
+
+                        if (droppableBelow === currentDroppable) {
+                            showPopupPanel();
+                        }
+
+                        currentDroppable = null;
+
                         if (currentDroppable) {
                             showPopupPanel();
                         }
