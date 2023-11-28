@@ -8,7 +8,7 @@ if (window.location.href.includes("index.html")) {
 
     playButton.addEventListener("click", function () {
 
-        window.location.href = "file:///C:/Users/malum/Desktop/webapp/game.html";
+        window.location.href = "https://tboydrug.github.io/game";
     });
 }
 else if (window.location.href.includes("game.html")) {
