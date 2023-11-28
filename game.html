@@ -159,7 +159,19 @@
                         }
                     };
 
-                    //event.preventDefault(); // Prevent default touch behavior
+                    function enterDroppable(elem) {
+                        elem.style.background = 'pink';
+                    }
+
+                    function leaveDroppable(elem) {
+                        elem.style.background = '';
+                    }
+
+                    object.ondragstart = function () {
+                        return false;
+                    };
+
+                    event.preventDefault(); // Prevent default touch behavior
                 };
 
             }
