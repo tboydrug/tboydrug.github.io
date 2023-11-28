@@ -191,6 +191,22 @@
 
                 
             }
+
+            let tg = window.Telegram.WebApp;
+
+            let backButton = document.getElementById("backBtn");
+
+            backButton.addEventListener("click", function () {
+                window.close();
+            })
+
+            Telegram.WebApp.onEvent("backClickBtn", function () {
+                let clickEvent = new Event("click");
+
+                backButton.dispatchEvent(clickEvent);
+
+                tg.sendData({ buttonClicked: "backBtn" });
+            })
         </script>
 
         <footer>
