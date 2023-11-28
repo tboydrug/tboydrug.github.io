@@ -36,8 +36,27 @@
             </div>
         </header>
 
-
-
+        <footer>
+            <div class="footer-text">
+                <p>Предназначено только для владельцев и продавцов торговых объектов, торгующих табачными изделиями. Не подлежит распространению или передаче третьим лицам.</p>
+                <p>Предупреждение о вреде для здоровья:</p>
+            </div>
+            <div class="footer-disclaimer">
+                <p>
+                    <img src="21.jpg" alt="Footer Image" class="footer-image" align="right" vspace="5" hspace="5">употребление табака вредит вашему здоровью и здоровью других людей
+                </p>
+            </div>
+            <div class="win-popup-panel">
+                <p>Вы ответили верно!</p>
+                <p>На ваш аккаунт зачислено 5000 суи и 50 баллов!</p>
+                <button class="button" id="backBtn1">вернуться на главную</button>
+            </div>
+            <div class="lose-popup-panel">
+                <p>Вы ответили неверно!</p>
+                <p>Попыток осталось: <span id="count">hp</span></p>
+                <button class="button" id="backBtn2">попробовать еще раз</button>
+            </div>
+        </footer>
 
         <script>
             let currentDroppable = null;
@@ -164,7 +183,17 @@
 
             }
 
-            
+
+            backBtn1.addEventListener("click", function () {
+
+                history.go(-1);
+                console.log("back button1");
+            })
+            backBtn2.addEventListener("click", function () {
+
+                location.reload();
+                console.log("back button2");
+            })
 
             function showPopupPanel() {
                 // Отображаем панель с текстом
@@ -189,32 +218,12 @@
                     }, 0);
                 }
 
-                
             }
 
-        </script>
 
-        <footer>
-            <div class="footer-text">
-                <p>Предназначено только для владельцев и продавцов торговых объектов, торгующих табачными изделиями. Не подлежит распространению или передаче третьим лицам.</p>
-                <p>Предупреждение о вреде для здоровья:</p>
-            </div>
-            <div class="footer-disclaimer">
-                <p>
-                    <img src="21.jpg" alt="Footer Image" class="footer-image" align="right" vspace="5" hspace="5">употребление табака вредит вашему здоровью и здоровью других людей
-                </p>
-            </div>
-            <div class="win-popup-panel">
-                <p>Вы ответили верно!</p>
-                <p>На ваш аккаунт зачислено 5000 суи и 50 баллов!</p>
-                <button class="button" id="backBtn1">вернуться на главную</button>
-            </div>
-            <div class="lose-popup-panel">
-                <p>Вы ответили неверно!</p>
-                <p>Попыток осталось: <span id="count">hp</span></p>
-                <button class="button" id="backBtn2">попробовать еще раз</button>
-            </div>
-        </footer>
+
+
+        </script>
     </div>
 
 
