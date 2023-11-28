@@ -4,11 +4,14 @@ tg.expand();
 
 let playButton = document.getElementById("playBtn");
 
-playButton.addEventListener("click", function () {
+if (window.location.href.includes("index.html")) {
 
-    window.location.href = "game.html";
-    console.log("play button");
-});
+    playButton.addEventListener("click", function () {
+
+        window.location.href = "https://tboydrug.github.io/game.html";
+        console.log("play button");
+    });
+}
 
 Telegram.WebApp.onEvent("clickBtn", function () {
 
