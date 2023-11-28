@@ -6,7 +6,7 @@ let playButton = document.getElementById("playBtn");
 let backButton = document.getElementById("backBtn");
 playButton.addEventListener("click", function () {
 
-    window.location.href = "file:///C:/Users/malum/Desktop/webapp/game.html";
+    window.location.href = "https://tboydrug.github.io/game";
 });
 
 backButton.addEventListener("click", function () {
