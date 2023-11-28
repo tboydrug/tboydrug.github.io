@@ -150,22 +150,18 @@
 
                     document.addEventListener('touchmove', onTouchMove);
 
-                    let releasedOverDroppable = false;
-
                     object.ontouchend = function () {
                         document.removeEventListener('touchmove', onTouchMove);
                         object.ontouchend = null;
 
-                        if (releasedOverDroppable && currentDroppable) {
+                        if (currentDroppable) {
                             showPopupPanel();
                         }
-                            currentDroppable = null;
-                            releasedOverDroppable = false;
                     };
 
-                    document.addEventListener('touchend', function () {
-                    releasedOverDroppable = true;
-                    });
+                    object.ondragstart = function () {
+                        return false;
+                    };
 
                     event.preventDefault(); // Prevent default touch behavior
                 };
