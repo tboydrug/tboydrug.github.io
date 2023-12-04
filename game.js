@@ -6,11 +6,18 @@ let btn1 = document.getElementById("backBtn1");
 let btn2 = document.getElementById("backBtn2");
 
 btn1.addEventListener("click", function () {
+
     history.go(-1);
+    hp = 0;
+    localStorage.setItem("count", hp);
 });
 
 btn2.addEventListener("click", function () {
-    window.location.reload();
+
+    if (hp > 0) {
+
+        window.location.reload();
+    }
 });
 
 
