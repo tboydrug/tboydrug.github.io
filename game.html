@@ -41,12 +41,23 @@
 
         <script>
             let currentDroppable = null;
+            let hp = localStorage.getItem("count");
             
-            if (!localStorage.getItem("count")) {
-
-                let hp = 2;
+            if (isNaN(hp)) {
+            
+                hp = 2;
                 localStorage.setItem("count", hp);
             }
+            else {
+            
+                hp = localStorage.getItem("count");
+            }
+            console.log(hp);
+            
+            document.addEventListener("DOMContentLoaded", function () {
+                
+                gameOverPanel();
+            });
             var userAgent = navigator.userAgent;
 
             if (userAgent.match(/Windows/i)) {
@@ -184,30 +195,59 @@
             
 
             function showPopupPanel() {
+                // Блокируем взаимодействие с объектом
+                object.style.pointerEvents = 'none';
+            
+                let popupPanel = document.querySelector('.popup-panel');
                 // Отображаем панель с текстом
                 if (currentDroppable.id == 3) {
-                    let winPopupPanel = document.querySelector('.win-popup-panel');
-                    // Блокируем взаимодействие с объектом
-                    object.style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        // Задаем конечное состояние для анимации
-                        winPopupPanel.style.bottom = '0';
-                    }, 0);
+                    
+                    document.getElementById("result-text").innerText = "Вы ответили верно!";
+                    document.getElementById("info-text").innerText = "На ваш аккаунт зачислено 5000 суи и 50 баллов!";
+                    document.getElementById("backBtn2").setAttribute("style", "display: none;");
                 }
                 else {
-                    let losePopupPanel = document.querySelector('.lose-popup-panel');
+            
                     hp--;
                     localStorage.setItem("count", hp);
-                    document.getElementById("count").innerText = hp;
-                    // Блокируем взаимодействие с объектом
+            
+                    if (hp > 0) {
+            
+                        document.getElementById("result-text").innerText = "Вы ответили неверно!";
+                        document.getElementById("info-text").innerText = "Попыток осталось :";
+                        document.getElementById("count").innerText = hp;
+                    }
+                    else {
+            
+                        document.getElementById("result-text").innerText = "Вы ответили неверно!";
+                        document.getElementById("info-text").innerText = "У вас закончились попытки";
+                        document.getElementById("backBtn2").setAttribute("style", "display: none;");
+                    }
+                }
+                setTimeout(() => {
+                    // Задаем конечное состояние для анимации
+                    popupPanel.style.bottom = '0';
+                }, 0);
+            
+            }
+
+            function gameOverPanel() {
+
+                if (hp <= 0) {
+            
                     object.style.pointerEvents = 'none';
+            
+                    let popupPanel = document.querySelector('.popup-panel');
+            
+                    document.getElementById("result-text").innerText = "Вы потратили все свои попытки!";
+                    document.getElementById("info-text").innerText = "Попробуйте в следующий раз";
+                    document.getElementById("backBtn2").setAttribute("style", "display: none;");
+            
                     setTimeout(() => {
                         // Задаем конечное состояние для анимации
-                        losePopupPanel.style.bottom = '0';
+                        popupPanel.style.bottom = '0';
                     }, 0);
                 }
-
-                
             }
         </script>
 
@@ -221,15 +261,16 @@
                     <img src="21.jpg" alt="Footer Image" class="footer-image" align="right" vspace="5" hspace="5">употребление табака вредит вашему здоровью и здоровью других людей
                 </p>
             </div>
-            <div class="win-popup-panel">
-                <p>Вы ответили верно!</p>
-                <p>На ваш аккаунт зачислено 5000 суи и 50 баллов!</p>
-                <button class="button" id="backBtn1">вернуться на главную</button>
-            </div>
-            <div class="lose-popup-panel">
-                <p>Вы ответили неверно!</p>
-                <p>Попыток осталось: <span id="count">hp</span></p>
-                <button class="button" id="backBtn2">попробовать ещё раз</button>
+            <div class="popup-panel">
+                <p><span id="result-text">Вы ответили верно!</span></p>
+                <p><span id="info-text">На ваш аккаунт зачислено 5000 суи и 50 баллов!</span></p>
+                <span id="count"></span>
+                <p>
+                    <button class="button" id="backBtn1">вернуться на главную</button>
+                </p>
+                <p>
+                    <button class="button" id="backBtn2">попробовать ещё раз</button>
+                </p>
             </div>
         </footer>
     </div>
