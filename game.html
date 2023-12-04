@@ -52,13 +52,15 @@
             else {
             
                 hp = localStorage.getItem("count");
+
+                document.addEventListener("DOMContentLoaded", function () {
+                
+                    gameOverPanel();
+                });
             }
             console.log(hp);
             
-            document.addEventListener("DOMContentLoaded", function () {
-                
-                gameOverPanel();
-            });
+            
             var userAgent = navigator.userAgent;
 
             if (userAgent.match(/Windows/i)) {
