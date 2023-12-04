@@ -41,7 +41,12 @@
 
         <script>
             let currentDroppable = null;
-            let hp = 2;
+            
+            if (!localStorage.getItem("count")) {
+
+                let hp = 2;
+                localStorage.setItem("count", hp);
+            }
             var userAgent = navigator.userAgent;
 
             if (userAgent.match(/Windows/i)) {
@@ -191,7 +196,8 @@
                 }
                 else {
                     let losePopupPanel = document.querySelector('.lose-popup-panel');
-                    hp - 1;
+                    hp--;
+                    localStorage.setItem("count", hp);
                     document.getElementById("count").innerText = hp;
                     // Блокируем взаимодействие с объектом
                     object.style.pointerEvents = 'none';
