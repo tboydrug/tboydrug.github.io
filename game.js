@@ -23,7 +23,7 @@ btn2.addEventListener("click", function () {
 
 btn2.addEventListener("click", function () {
 
-    window.location.href = "file:///C:/Users/malum/Desktop/webapp/webapp1/question1.html";
+    window.location.href = "https://tboydrug.github.io/question1.html";
 });
 
 
