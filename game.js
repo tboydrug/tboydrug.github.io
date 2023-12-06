@@ -21,7 +21,7 @@ btn2.addEventListener("click", function () {
     }
 });
 
-btn2.addEventListener("click", function () {
+nextBtn.addEventListener("click", function () {
 
     window.location.href = "https://tboydrug.github.io/question1.html";
 });
