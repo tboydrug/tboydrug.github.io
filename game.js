@@ -2,6 +2,7 @@ let tg = window.Telegram.WebApp;
 
 tg.expand();
 
+let nextBtn = document.getElementById("nextBtn");
 let btn1 = document.getElementById("backBtn1");
 let btn2 = document.getElementById("backBtn2");
 
@@ -20,14 +21,21 @@ btn2.addEventListener("click", function () {
     }
 });
 
+btn2.addEventListener("click", function () {
+
+    window.location.href = "file:///C:/Users/malum/Desktop/webapp/webapp1/question1.html";
+});
+
 
 Telegram.WebApp.onEvent("btnClick", function () {
 
     let clickEvent = new Event("click");
 
+    //nextBtn.dispatchEvent(clickEvent);
     btn1.dispatchEvent(clickEvent);
     btn2.dispatchEvent(clickEvent);
 
+    //tg.sendData({ buttonClicked: "nextBtn" });
     tg.sendData({ buttonClicked: "btn1" });
     tg.sendData({ buttonClicked: "btn2" });
 });
