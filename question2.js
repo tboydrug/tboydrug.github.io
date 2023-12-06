@@ -15,7 +15,7 @@ console.log(hp);
 
 btn1.addEventListener("click", function () {
 
-    history.go(-2);
+    history.go(-3);
     hp = 0;
     localStorage.setItem("count", hp);
 });
