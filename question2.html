@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="windows-1251">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Parliament</title>
+</head>
+<body>
+    <div class="container">
+        <header style="height: 90vh;">
+            <h1>Вопрос №2</h1>
+            <p style="font-size: 24px;padding: 10px;">Какой вкус у сигарет Parliament Reserve Fuse?</p>
+
+            <button class="button" id="choiceBtn1">Капсула со вкусом ментола</button>
+            <button class="button" id="choiceBtn2">Капсула со вкусом лесных ягод</button>
+            <button class="button" id="choiceBtn3">Мягкий табачный вкус</button>
+        </header>
+
+        <footer>
+            <div class="footer-disclaimer">
+                <p>
+                    <img src="21.jpg" alt="Footer Image" class="footer-image" align="right" vspace="5" hspace="5">употребление табака вредит вашему здоровью и здоровью других людей
+                </p>
+            </div>
+            <div class="popup-panel">
+                <p><span id="result-text">Вы ответили верно!</span></p>
+                <p><span id="info-text">На ваш аккаунт зачислено 5000 суи и 50 баллов!</span></p>
+                <span id="count"></span>
+                <p>
+                    <button class="button" id="backBtn1">вернуться на главную</button>
+                </p>
+                <p>
+                    <button class="button" id="backBtn2">попробовать ещё раз</button>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="question2.js"></script>
+</body>
+</html>
