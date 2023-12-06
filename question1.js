@@ -52,7 +52,7 @@ function ShowPanel(result) {
 
     if (result == 1) {
 
-        document.getElementById("result-text").innerText = "Вы ответили верно!";
+        document.getElementById("result-text").innerText = "Р’С‹ РѕС‚РІРµС‚РёР»Рё РІРµСЂРЅРѕ!";
         document.getElementById("info-text").innerText = "";
 
         document.getElementById("backBtn1").setAttribute("style", "display: none;");
@@ -65,8 +65,8 @@ function ShowPanel(result) {
 
         if (hp > 0) {
 
-            document.getElementById("result-text").innerText = "Вы ответили неверно!";
-            document.getElementById("info-text").innerText = "Попыток осталось :";
+            document.getElementById("result-text").innerText = "Р’С‹ РѕС‚РІРµС‚РёР»Рё РЅРµРІРµСЂРЅРѕ!";
+            document.getElementById("info-text").innerText = "РџРѕРїС‹С‚РѕРє РѕСЃС‚Р°Р»РѕСЃСЊ :";
             document.getElementById("count").innerText = hp;
 
             document.getElementById("nextBtn").setAttribute("style", "display: none;");
@@ -74,15 +74,15 @@ function ShowPanel(result) {
         }
         else {
 
-            document.getElementById("result-text").innerText = "Вы ответили неверно!";
-            document.getElementById("info-text").innerText = "У вас закончились попытки";
+            document.getElementById("result-text").innerText = "Р’С‹ РѕС‚РІРµС‚РёР»Рё РЅРµРІРµСЂРЅРѕ!";
+            document.getElementById("info-text").innerText = "РЈ РІР°СЃ Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ РїРѕРїС‹С‚РєРё";
 
             document.getElementById("nextBtn").setAttribute("style", "display: none;");
             document.getElementById("backBtn2").setAttribute("style", "display: none;");
         }
     }
     setTimeout(() => {
-        // Задаем конечное состояние для анимации
+        // Г‡Г Г¤Г ГҐГ¬ ГЄГ®Г­ГҐГ·Г­Г®ГҐ Г±Г®Г±ГІГ®ГїГ­ГЁГҐ Г¤Г«Гї Г Г­ГЁГ¬Г Г¶ГЁГЁ
         popupPanel.style.bottom = '0';
     }, 0);
 }
