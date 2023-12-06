@@ -206,8 +206,9 @@
                 // Отображаем панель с текстом
                 if (currentDroppable.id == 3) {
                     
-                    document.getElementById("result-text").innerText = "Вы ответили верно!";
-                    document.getElementById("info-text").innerText = "На ваш аккаунт зачислено 5000 суи и 50 баллов!";
+                    document.getElementById("result-text").innerText = "Правильный выбор!";
+                    document.getElementById("info-text").innerText = "Осталось ответить на пару вопросов";
+                    document.getElementById("backBtn1").setAttribute("style", "display: none;");
                     document.getElementById("backBtn2").setAttribute("style", "display: none;");
                 }
                 else {
@@ -217,16 +218,18 @@
 
                     if (hp > 0) {
 
-                        document.getElementById("result-text").innerText = "Вы ответили неверно!";
+                        document.getElementById("result-text").innerText = "Вы выбрали неверный ответ!";
                         document.getElementById("info-text").innerText = "Попыток осталось :";
                         document.getElementById("count").innerText = hp;
                         document.getElementById("backBtn1").setAttribute("style", "display: none;");
+                        document.getElementById("nextBtn").setAttribute("style", "display: none;");
                     }
                     else {
 
-                        document.getElementById("result-text").innerText = "Вы ответили неверно!";
+                        document.getElementById("result-text").innerText = "Вы выбрали неверный ответ!";
                         document.getElementById("info-text").innerText = "У вас закончились попытки";
                         document.getElementById("backBtn2").setAttribute("style", "display: none;");
+                        document.getElementById("nextBtn").setAttribute("style", "display: none;");
                     }
                 }
                 setTimeout(() => {
@@ -270,6 +273,9 @@
                 <p><span id="result-text">Вы ответили верно!</span></p>
                 <p><span id="info-text">На ваш аккаунт зачислено 5000 суи и 50 баллов!</span></p>
                 <span id="count"></span>
+                <p>
+                    <button class="button" id="nextBtn">Перейти к вопросу</button>
+                </p>
                 <p>
                     <button class="button" id="backBtn1">вернуться на главную</button>
                 </p>
