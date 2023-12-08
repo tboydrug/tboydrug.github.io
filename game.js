@@ -8,7 +8,7 @@ let btn2 = document.getElementById("backBtn2");
 
 btn1.addEventListener("click", function () {
 
-    history.go(-1);
+    window.location.href = "https://tboydrug.github.io/menu.html";
     hp = 0;
     localStorage.setItem("count", hp);
 });
