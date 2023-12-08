@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8_unicode_ci">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="findwords.style.css">
+    <title>Word Puzzle Game</title>
+</head>
+<body>
+    <div id="word-list">
+        <h2>СОСТАВЬТЕ СЛОВА ИЗ БУКВ:</h2>
+        <ul>
+            <li>PARLIAMENT</li>
+            <li>RESERVEFUSE</li>
+            <li>AROMAPANEL</li>
+            <li>SMOKESMELL</li>
+            <!-- Добавьте другие слова, которые нужно отгадать -->
+        </ul>
+    </div>
+
+    <div id="letter-grid"></div>
+
+    <div id="timer-container">
+        <span id="timer" style="font-size: 8vw; color: white; position: absolute; left: 42vw; bottom: 70px;">3:00</span>
+    </div>
+
+    <div class="footer-disclaimer">
+        <p>
+            <img src="21.jpg" alt="Footer Image" class="footer-image" align="right" vspace="5" hspace="5">употребление табака вредит вашему здоровью и здоровью других людей
+        </p>
+    </div>
+    <div class="popup-panel">
+        <p><span id="result-text">Вы отгадали все слова!</span></p>
+        <p><span id="info-text">На ваш аккаунт зачислено 5000 суи и 50 баллов!</span></p>
+        <span id="count"></span>
+        <p>
+            <button class="button" id="backBtn1">вернуться в telegram</button>
+        </p>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="findwords.game.js"></script>
+</body>
+</html>
