@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const minutes = Math.floor(remainingTime / 60000);
         const seconds = Math.floor((remainingTime % 60000) / 1000);
 
-        // Отобразим время в формате "минуты:секунды"
+        // ГЋГІГ®ГЎГ°Г Г§ГЁГ¬ ГўГ°ГҐГ¬Гї Гў ГґГ®Г°Г¬Г ГІГҐ "Г¬ГЁГ­ГіГІГ»:Г±ГҐГЄГіГ­Г¤Г»"
         document.getElementById('timer').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         
         timer = setInterval(function () {
-            // Обновим отображение таймера
+            // ГЋГЎГ­Г®ГўГЁГ¬ Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГІГ Г©Г¬ГҐГ°Г 
             updateTimerDisplay(remainingTime);
 
             if (remainingTime > 0) {
@@ -47,13 +47,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.setItem("count", remainingTime);;
             }
 
-            // Если время вышло, покажем панель и очистим таймер
+            // Г…Г±Г«ГЁ ГўГ°ГҐГ¬Гї ГўГ»ГёГ«Г®, ГЇГ®ГЄГ Г¦ГҐГ¬ ГЇГ Г­ГҐГ«Гј ГЁ Г®Г·ГЁГ±ГІГЁГ¬ ГІГ Г©Г¬ГҐГ°
             if (remainingTime <= 0) {
                 showGameOverPanel();
                 stop(timer);
             }
         }, 1000);
-        // Обновим отображение таймера в начале
+        // ГЋГЎГ­Г®ГўГЁГ¬ Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГІГ Г©Г¬ГҐГ°Г  Гў Г­Г Г·Г Г«ГҐ
         updateTimerDisplay(remainingTime);
     }
 
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (allWordsCorrect) {
 
-                console.log("Все слова отгаданы!");
+                console.log("Г‚Г±ГҐ Г±Г«Г®ГўГ  Г®ГІГЈГ Г¤Г Г­Г»!");
                 showPopupPanel();
             }
         }
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (allWordsCorrect) {
 
-                console.log("Все слова отгаданы!");
+                console.log("Г‚Г±ГҐ Г±Г«Г®ГўГ  Г®ГІГЈГ Г¤Г Г­Г»!");
                 showPopupPanel();
             }
         }
@@ -310,8 +310,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let popupPanel = document.querySelector('.popup-panel');
 
-        document.getElementById("result-text").innerText = "Вы отгадали все слова!";
-        document.getElementById("info-text").innerText = "На ваш аккаунт зачислено 5000 суи и 50 баллов!";
+        document.getElementById("result-text").innerText = "Р’С‹ РѕС‚РіР°РґР°Р»Рё РІСЃРµ СЃР»РѕРІР°!";
+        document.getElementById("info-text").innerText = "РќР° РІР°С€ Р°РєРєР°СѓРЅС‚ Р·Р°С‡РёСЃР»РµРЅРѕ 5000 СЃСѓРё Рё 50 Р±Р°Р»Р»РѕРІ!";
 
         isWinning = true;
         localStorage.setItem("win", isWinning);
@@ -328,8 +328,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let popupPanel = document.querySelector('.popup-panel');
 
-        document.getElementById("result-text").innerText = "Время истекло!";
-        document.getElementById("info-text").innerText = "К сожалению вы не успели угадать слова";
+        document.getElementById("result-text").innerText = "Р’СЂРµРјСЏ РёСЃС‚РµРєР»Рѕ!";
+        document.getElementById("info-text").innerText = "Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ РІС‹ РЅРµ СѓСЃРїРµР»Рё СѓРіР°РґР°С‚СЊ СЃР»РѕРІР°";
 
 
         setTimeout(() => {
