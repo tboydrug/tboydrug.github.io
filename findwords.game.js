@@ -11,13 +11,19 @@ document.addEventListener('DOMContentLoaded', function () {
     var userAgent = navigator.userAgent;
     const wordList = document.querySelectorAll('#word-list li');
     const letterGrid = document.getElementById('letter-grid');
-    localStorage.clear();
+
     let timerDuration = localStorage.getItem("count");
     let isWinning = localStorage.getItem("win");
 
     if (isNaN(isWinning) || isWinning == null) {
 
         isWinning = false;
+        localStorage.setItem("win", isWinning);
+    }
+
+    if (isWinning == 0 && timerDuration == 0) {
+
+        localStorage.removeItem("count");
     }
 
     if (isNaN(timerDuration) || timerDuration == null) {
@@ -313,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("result-text").innerText = "Вы отгадали все слова!";
         document.getElementById("info-text").innerText = "На ваш аккаунт зачислено 5000 суи и 50 баллов!";
 
-        isWinning = true;
+        isWinning = 1;
         localStorage.setItem("win", isWinning);
 
         setTimeout(() => {
@@ -331,6 +337,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("result-text").innerText = "Время истекло!";
         document.getElementById("info-text").innerText = "К сожалению вы не успели угадать слова";
 
+        isWinning = 2;
+        localStorage.setItem("win", isWinning);
 
         setTimeout(() => {
 
