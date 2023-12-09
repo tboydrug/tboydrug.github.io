@@ -7,7 +7,7 @@
 
     testBtn.addEventListener("click", function () {
 
-        window.location.href = "https://tboydrug.github.io/index.html";
+        window.location.href = "https://tboydrug.github.io/tutorial.html";
     });
 
     playBtn.addEventListener("click", function () {
