@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     testBtn.addEventListener("click", function () {
 
-        window.location.href = "https://tboydrug.github.io/info.html";
+        window.location.href = "https://tboydrug.github.io/index.html";
     });
 
     playBtn.addEventListener("click", function () {
