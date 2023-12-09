@@ -1,5 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-
     let tg = window.Telegram.WebApp;
 
     tg.expand();
@@ -27,4 +25,3 @@ document.addEventListener('DOMContentLoaded', function () {
         playBtn.dispatchEvent(clickEvent);
         tg.sendData({ buttonClicked: "btn1" });
     });
-}
