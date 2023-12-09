@@ -44,43 +44,14 @@ header {
 }
 
 .footer-text {
-    --font-size: 15px;
     color: rgb(72, 72, 72);
     font-weight: bold;
-    font-size: var(--font-size);
 }
 
 .footer-disclaimer {
-    --font-size: 15px;
     color: #333;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: var(--font-size);
-}
-
-@media (max-width: 600px) {
-    .target {
-        --top-value: 40vh; 
-    }
-    .footer-text {
-        --font-size: 10px;
-    }
-    .footer-disclaimer {
-        --font-size: 10px;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 1000px) {
-    .target {
-        --top-value: 30vh; 
-    }
-    .footer-text {
-        --font-size: 12px;
-    }
-
-    .footer-disclaimer {
-        --font-size: 12px;
-    }
 }
 
 .target-text {
@@ -125,13 +96,15 @@ header {
 }
 
 h1 {
-    font-size: 24px;
+    --font-size: 24px;
+    font-size: var(--font-size);
     text-transform: uppercase;
     margin-bottom: 20px;
 }
 
 p {
-    margin-bottom: 15px;
+    --font-size: 15px;
+    font-size: var(--font-size);
 }
 
 .button {
@@ -193,7 +166,33 @@ footer {
     display: flex;
 }
 
+@media (max-width: 600px) {
+    .target {
+        --top-value: 40vh;
+    }
 
+    p {
+        --font-size: 10px;
+    }
+
+    h1 {
+        --font-size: 16px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+    .target {
+        --top-value: 30vh;
+    }
+
+    p {
+        --font-size: 12px;
+    }
+
+    h1 {
+        --font-size: 20px;
+    }
+}
 
 
 
