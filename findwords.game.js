@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var userAgent = navigator.userAgent;
     const wordList = document.querySelectorAll('#word-list li');
     const letterGrid = document.getElementById('letter-grid');
-    //localStorage.clear();
+    localStorage.clear();
     let timerDuration = localStorage.getItem("count");
     let isWinning = localStorage.getItem("win");
 
