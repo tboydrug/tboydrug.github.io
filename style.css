@@ -65,12 +65,12 @@ header {
     pointer-events: none;
 }
 
-.game-panel {
+/*.game-panel {
     position: absolute;
     background: rgb(59, 63, 147);
     border-radius: 30px;
     height: 0vh;
-}
+}*/
 
 .popup-panel {
     position: fixed;
