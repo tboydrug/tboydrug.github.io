@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (isNaN(isWinning) || isWinning == null) {
 
-        isWinning = false;
+        isWinning = 0;
         localStorage.setItem("win", isWinning);
     }
 
