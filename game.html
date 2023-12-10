@@ -41,6 +41,7 @@
 
         <script>
             let currentDroppable = null;
+            localStorage.clear();
             let hp = localStorage.getItem("count");
             
             if (isNaN(hp) || hp == null) {
