@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let timerDuration = localStorage.getItem("count");
     let isWinning = localStorage.getItem("win");
 
+    console.log(timerDuration);
+    console.log(timerDuration);
+
     if (isNaN(isWinning) || isWinning == null) {
 
         isWinning = 0;
