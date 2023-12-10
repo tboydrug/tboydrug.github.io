@@ -44,11 +44,13 @@ header {
 }
 
 .footer-text {
+    padding: 10px;
     color: rgb(72, 72, 72);
     font-weight: bold;
 }
 
 .footer-disclaimer {
+    padding: 10px;
     color: #333;
     font-weight: bold;
     text-transform: uppercase;
@@ -144,7 +146,6 @@ p {
 }
 
 footer {
-    padding: 10px;
     bottom: 0;
     background-color: #f0f0f0;
     text-align: center;
