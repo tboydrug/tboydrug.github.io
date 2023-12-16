@@ -44,7 +44,7 @@ body {
     width: var(--wh);
     height: var(--wh);
     text-align: center;
-    line-height: 200%;
+    line-height: 100%;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
