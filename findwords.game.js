@@ -1,4 +1,3 @@
-document.documentElement.requestFullScreen();
 document.addEventListener('DOMContentLoaded', function () {
 
     let tg = window.Telegram.WebApp;
