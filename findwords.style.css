@@ -45,8 +45,7 @@ body {
     width: var(--wh);
     height: var(--wh);
     text-align: center;
-    line-height: 150%;
-    font-size: 15px;
+    font-size: var(--wh);
     font-weight: 700;
     cursor: pointer;
     color: rgb(59, 63, 147);
