@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     btn1.addEventListener("click", function () {
 
         window.close();
+        tg.close();
     });
 
     Telegram.WebApp.onEvent("btnClick", function () {
