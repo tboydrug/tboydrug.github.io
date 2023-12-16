@@ -19,13 +19,14 @@ body {
     #word-list ul {
         display: flex;
         flex-direction: row;
+        justify-content: center;
         list-style-type: none;
         padding: 0;
     }
 
     #word-list li {
         font-size: 2.5vw;
-        margin: 10px;
+        margin: 2vw;
         cursor: pointer;
     }
 
