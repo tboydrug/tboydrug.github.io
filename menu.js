@@ -12,7 +12,7 @@
 
     playBtn.addEventListener("click", function () {
 
-        window.location.href = "https://tboydrug.github.io/findwords.game.html";
+        window.open("https://tboydrug.github.io/findwords.game.html", "findwords.game", "popup");
     });
 
     Telegram.WebApp.onEvent("btnClick", function () {
