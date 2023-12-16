@@ -24,7 +24,8 @@ body {
     }
 
     #word-list li {
-        font-size: 3vw;
+        --font-size: 3vw;
+        font-size: var(--font-size);
         margin-right: 2vw;
         cursor: pointer;
     }
@@ -128,5 +129,9 @@ body {
 
     .footer-disclaimer {
         --font-size: 3vw;
+    }
+    
+    #word-list li{
+        --font-size: 2vw;
     }
 }
