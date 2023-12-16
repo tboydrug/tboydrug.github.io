@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     btn1.addEventListener("click", function () {
 
-        window.location.href = "https://tboydrug.github.io/menu.html";
+        window.close();
     });
 
     Telegram.WebApp.onEvent("btnClick", function () {
