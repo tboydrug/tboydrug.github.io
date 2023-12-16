@@ -48,8 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     btn1.addEventListener("click", function () {
 
-        window.close();
-        tg.close();
+        window.location.href = "https://t.me/mytelergamtestBot";
     });
 
     Telegram.WebApp.onEvent("btnClick", function () {
