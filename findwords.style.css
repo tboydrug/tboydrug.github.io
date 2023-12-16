@@ -41,16 +41,17 @@ body {
 }
 
 .cell {
+    display:flex;
     --wh: 40px;
     width: var(--wh);
     height: var(--wh);
-    text-align: center;
     align-items: center;
     justify-content: center;
     font-size: calc(var(--wh)/2);
     font-weight: 700;
     cursor: pointer;
     color: rgb(59, 63, 147);
+    border: 1px solid #cbcaca75;
 }
 
 .letter {
