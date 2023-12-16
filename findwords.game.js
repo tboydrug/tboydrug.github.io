@@ -20,16 +20,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const minutes = Math.floor(remainingTime / 60000);
         const seconds = Math.floor((remainingTime % 60000) / 1000);
 
-        // Îòîáðàçèì âðåìÿ â ôîðìàòå "ìèíóòû:ñåêóíäû"
         document.getElementById('timer').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
 
     function startTimer() {
         let remainingTime = timerDuration;
 
-        
+
         timer = setInterval(function () {
-            // Îáíîâèì îòîáðàæåíèå òàéìåðà
+
             updateTimerDisplay(remainingTime);
 
             if (remainingTime > 0) {
@@ -37,13 +36,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.setItem("count", remainingTime);;
             }
 
-            // Åñëè âðåìÿ âûøëî, ïîêàæåì ïàíåëü è î÷èñòèì òàéìåð
+
             if (remainingTime <= 0) {
                 showGameOverPanel();
                 stop(timer);
             }
         }, 1000);
-        // Îáíîâèì îòîáðàæåíèå òàéìåðà â íà÷àëå
+
         updateTimerDisplay(remainingTime);
     }
 
@@ -73,23 +72,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         const letterGridData = [
-            ['P', 'A', 'T', 'C', 'O', 'A', 'R', 'E', 'T', 'T'],
-            ['R', 'R', 'A', 'C', 'I', 'G', 'W', 'O', 'R', 'E'],
-            ['E', 'L', 'B', 'A', 'K', 'E', 'Y', 'S', 'D', 'W'],
-            ['S', 'I', 'A', 'R', 'O', 'M', 'D', 'M', 'O', 'K'],
-            ['E', 'R', 'M', 'O', 'L', 'A', 'O', 'O', 'S', 'E'],
-            ['E', 'V', 'E', 'M', 'E', 'P', 'S', 'K', 'M', 'S'],
-            ['F', 'S', 'N', 'A', 'N', 'A', 'E', 'I', 'A', 'M'],
-            ['U', 'M', 'T', 'N', 'W', 'R', 'G', 'N', 'L', 'E'],
-            ['S', 'O', 'R', 'I', 'I', 'N', 'N', 'R', 'L', 'L'],
-            ['E', 'K', 'E', 'C', 'O', 'T', 'I', 'N', 'E', 'L'],
+            ['P', 'A', 'R', 'L', 'I', 'A', 'M', 'E', 'N', 'T', 'R'],
+            ['R', 'R', 'A', 'C', 'I', 'G', 'W', 'O', 'R', 'E', 'E'],
+            ['E', 'L', 'B', 'A', 'K', 'E', 'Y', 'S', 'D', 'W', 'S'],
+            ['S', 'I', 'A', 'R', 'O', 'M', 'D', 'M', 'O', 'K', 'E'],
+            ['E', 'R', 'M', 'O', 'L', 'A', 'O', 'O', 'S', 'E', 'R'],
+            ['E', 'V', 'E', 'M', 'E', 'P', 'S', 'K', 'M', 'S', 'V'],
+            ['L', 'E', 'N', 'A', 'P', 'A', 'M', 'O', 'R', 'A', 'E'],
+            ['U', 'M', 'T', 'N', 'W', 'R', 'G', 'N', 'L', 'E', 'F'],
+            ['S', 'O', 'R', 'I', 'I', 'N', 'N', 'R', 'L', 'L', 'U'],
+            ['E', 'K', 'E', 'C', 'O', 'T', 'I', 'N', 'E', 'L', 'S'],
+            ['S', 'M', 'O', 'K', 'E', 'S', 'M', 'E', 'L', 'L', 'E'],
         ];
 
         let isDragging = false;
         let selectedCells = [];
+        let direction = '';
 
-        for (let i = 0; i < 10; i++) {
-            for (let j = 0; j < 10; j++) {
+        for (let i = 0; i < 11; i++) {
+            for (let j = 0; j < 11; j++) {
                 const cell = createCell(i, j, letterGridData[i][j]);
                 letterGrid.appendChild(cell);
             }
@@ -117,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             isDragging = true;
             selectedCells = [event.target];
+            direction = '';
             event.target.classList.add('selected');
 
             document.onmousemove = handleMouseMove;
@@ -126,10 +128,52 @@ document.addEventListener('DOMContentLoaded', function () {
         function handleMouseMove(event) {
             if (isDragging) {
                 const cell = getCellFromEvent(event);
-                if (cell && !cell.classList.contains('selected') && isNeighbor(cell, selectedCells[selectedCells.length - 1])) {
-                    selectedCells.push(cell);
-                    cell.classList.add('selected');
+                if (cell && !cell.classList.contains('selected')) {
+                    if (direction === '' || isSameDirection(cell, selectedCells[selectedCells.length - 1], direction)) {
+                        selectedCells.push(cell);
+                        cell.classList.add('selected');
+                        if (direction === '') {
+                            setDirection(cell, selectedCells[selectedCells.length - 2]);
+                        }
+                    }
                 }
+            }
+        }
+
+        function isSameDirection(cell1, cell2, direction) {
+            const row1 = parseInt(cell1.dataset.row);
+            const col1 = parseInt(cell1.dataset.col);
+            const row2 = parseInt(cell2.dataset.row);
+            const col2 = parseInt(cell2.dataset.col);
+
+            switch (direction) {
+                case 'up':
+                    return row1 === row2 - 1 && col1 === col2;
+                case 'down':
+                    return row1 === row2 + 1 && col1 === col2;
+                case 'left':
+                    return row1 === row2 && col1 === col2 - 1;
+                case 'right':
+                    return row1 === row2 && col1 === col2 + 1;
+                default:
+                    return false;
+            }
+        }
+
+        function setDirection(cell, prevCell) {
+            const row1 = parseInt(cell.dataset.row);
+            const col1 = parseInt(cell.dataset.col);
+            const row2 = parseInt(prevCell.dataset.row);
+            const col2 = parseInt(prevCell.dataset.col);
+
+            if (row1 === row2 - 1 && col1 === col2) {
+                direction = 'up';
+            } else if (row1 === row2 + 1 && col1 === col2) {
+                direction = 'down';
+            } else if (row1 === row2 && col1 === col2 - 1) {
+                direction = 'left';
+            } else if (row1 === row2 && col1 === col2 + 1) {
+                direction = 'right';
             }
         }
 
@@ -159,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (allWordsCorrect) {
 
-                console.log("Âñå ñëîâà îòãàäàíû!");
                 showPopupPanel();
             }
         }
@@ -188,23 +231,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         const letterGridData = [
-            ['P', 'A', 'T', 'C', 'O', 'A', 'R', 'E', 'T', 'T'],
-            ['R', 'R', 'A', 'C', 'I', 'G', 'W', 'O', 'R', 'E'],
-            ['E', 'L', 'B', 'A', 'K', 'E', 'Y', 'S', 'D', 'W'],
-            ['S', 'I', 'A', 'R', 'O', 'M', 'D', 'M', 'O', 'K'],
-            ['E', 'R', 'M', 'O', 'L', 'A', 'O', 'O', 'S', 'E'],
-            ['E', 'V', 'E', 'M', 'E', 'P', 'S', 'K', 'M', 'S'],
-            ['F', 'S', 'N', 'A', 'N', 'A', 'E', 'I', 'A', 'M'],
-            ['U', 'M', 'T', 'N', 'W', 'R', 'G', 'N', 'L', 'E'],
-            ['S', 'O', 'R', 'I', 'I', 'N', 'N', 'R', 'L', 'L'],
-            ['E', 'K', 'E', 'C', 'O', 'T', 'I', 'N', 'E', 'L'],
+            ['P', 'A', 'R', 'L', 'I', 'A', 'M', 'E', 'N', 'T', 'R'],
+            ['R', 'R', 'A', 'C', 'I', 'G', 'W', 'O', 'R', 'E', 'E'],
+            ['E', 'L', 'B', 'A', 'K', 'E', 'Y', 'S', 'D', 'W', 'S'],
+            ['S', 'I', 'A', 'R', 'O', 'M', 'D', 'M', 'O', 'K', 'E'],
+            ['E', 'R', 'M', 'O', 'L', 'A', 'O', 'O', 'S', 'E', 'R'],
+            ['E', 'V', 'E', 'M', 'E', 'P', 'S', 'K', 'M', 'S', 'V'],
+            ['L', 'E', 'N', 'A', 'P', 'A', 'M', 'O', 'R', 'A', 'E'],
+            ['U', 'M', 'T', 'N', 'W', 'R', 'G', 'N', 'L', 'E', 'F'],
+            ['S', 'O', 'R', 'I', 'I', 'N', 'N', 'R', 'L', 'L', 'U'],
+            ['E', 'K', 'E', 'C', 'O', 'T', 'I', 'N', 'E', 'L', 'S'],
+            ['S', 'M', 'O', 'K', 'E', 'S', 'M', 'E', 'L', 'L', 'E'],
         ];
 
         let isDragging = false;
         let selectedCells = [];
+        let direction = '';
 
-        for (let i = 0; i < 10; i++) {
-            for (let j = 0; j < 10; j++) {
+        for (let i = 0; i < 11; i++) {
+            for (let j = 0; j < 11; j++) {
                 const cell = createCell(i, j, letterGridData[i][j]);
                 letterGrid.appendChild(cell);
             }
@@ -232,16 +277,59 @@ document.addEventListener('DOMContentLoaded', function () {
         function handleTouchStart(event) {
             isDragging = true;
             selectedCells = [event.target];
+            direction = '';
             event.target.classList.add('selected');
         }
 
         function handleTouchMove(event) {
             if (isDragging) {
                 const cell = getCellFromEvent(event.touches[0]);
-                if (cell && !cell.classList.contains('selected') && isNeighbor(cell, selectedCells[selectedCells.length - 1])) {
-                    selectedCells.push(cell);
-                    cell.classList.add('selected');
+                if (cell && !cell.classList.contains('selected')) {
+                    if (direction === '' || isSameDirection(cell, selectedCells[selectedCells.length - 1], direction)) {
+                        selectedCells.push(cell);
+                        cell.classList.add('selected');
+                        if (direction === '') {
+                            setDirection(cell, selectedCells[selectedCells.length - 2]);
+                        }
+                    }
                 }
+            }
+        }
+
+        function isSameDirection(cell1, cell2, direction) {
+            const row1 = parseInt(cell1.dataset.row);
+            const col1 = parseInt(cell1.dataset.col);
+            const row2 = parseInt(cell2.dataset.row);
+            const col2 = parseInt(cell2.dataset.col);
+
+            switch (direction) {
+                case 'up':
+                    return row1 === row2 - 1 && col1 === col2;
+                case 'down':
+                    return row1 === row2 + 1 && col1 === col2;
+                case 'left':
+                    return row1 === row2 && col1 === col2 - 1;
+                case 'right':
+                    return row1 === row2 && col1 === col2 + 1;
+                default:
+                    return false;
+            }
+        }
+
+        function setDirection(cell, prevCell) {
+            const row1 = parseInt(cell.dataset.row);
+            const col1 = parseInt(cell.dataset.col);
+            const row2 = parseInt(prevCell.dataset.row);
+            const col2 = parseInt(prevCell.dataset.col);
+
+            if (row1 === row2 - 1 && col1 === col2) {
+                direction = 'up';
+            } else if (row1 === row2 + 1 && col1 === col2) {
+                direction = 'down';
+            } else if (row1 === row2 && col1 === col2 - 1) {
+                direction = 'left';
+            } else if (row1 === row2 && col1 === col2 + 1) {
+                direction = 'right';
             }
         }
 
@@ -269,7 +357,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (allWordsCorrect) {
 
-                console.log("Âñå ñëîâà îòãàäàíû!");
                 showPopupPanel();
             }
         }
@@ -326,7 +413,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     startTimer();
 });
-
 
 
 
