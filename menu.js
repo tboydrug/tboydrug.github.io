@@ -12,7 +12,8 @@
 
     playBtn.addEventListener("click", function () {
 
-        window.open("https://tboydrug.github.io/findwords.game.html", "findwords.game", "popup");
+        openLink("https://tboydrug.github.io/findwords.game.html"[try_instant_view = true, options]);
+        //window.open("https://tboydrug.github.io/findwords.game.html", "findwords.game", "popup");
     });
 
     Telegram.WebApp.onEvent("btnClick", function () {
