@@ -30,15 +30,15 @@ body {
     }
 
 #letter-grid {
-    --margin: 40px;
+    --margin: 30px;
     display: grid;
-    grid-template-columns: repeat(10, var(--margin));
+    grid-template-columns: repeat(11, var(--margin));
     gap: 0px;
     background: rgb(255 255 255 / 0.5);
 }
 
 .cell {
-    --wh: 40px;
+    --wh: 30px;
     width: var(--wh);
     height: var(--wh);
     text-align: center;
@@ -119,11 +119,11 @@ body {
 
 @media (max-width: 400px) {
     #letter-grid {
-        --margin: 30px;
+        --margin: 25px;
     }
 
     .cell {
-        --wh: 30px;
+        --wh: 25px;
     }
 
     .footer-disclaimer {
